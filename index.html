@@ -6,78 +6,267 @@
 <title>Perfil Sensorial</title>
 <style>
   :root{
-    --bg:#0e1625; --card:#14213b; --line:#2b3f66;
-    --text:#f8fafc; --muted:#cbd5e1;
-    --pri:#6d28d9; --ok:#10b981; --err:#ef4444; --warn:#f59e0b;
-    --chip:#0b1220; --chipHover:#0f1a2e; --chipSel:#1e293b;
+    /* TEMA CLARO (PADRÃO) */
+    --bg:#f3f4f6;
+    --card:#ffffff;
+    --line:#e5e7eb;
+    --text:#0f172a;
+    --muted:#6b7280;
+    --pri:#6d28d9;
+    --ok:#10b981;
+    --err:#b91c1c;
+    --warn:#f59e0b;
+    --surface:#f9fafb;
+    --chip:#eef2ff;
+    --chipHover:#e0e7ff;
+    --chipSel:#e0e7ff;
+    --ok-bg:#ecfdf3;
+    --ok-border:#bbf7d0;
+    --ok-text:#166534;
+    --err-bg:#fef2f2;
+    --err-border:#fecaca;
+    --err-text:#7f1d1d;
+    --warn-bg:#fffbeb;
+    --warn-border:#fef3c7;
+    --warn-text:#92400e;
   }
+
+  /* TEMA ESCURO */
+  [data-theme="dark"]{
+    --bg:#0e1625;
+    --card:#14213b;
+    --line:#2b3f66;
+    --text:#f8fafc;
+    --muted:#cbd5e1;
+    --pri:#6d28d9;
+    --ok:#10b981;
+    --err:#ef4444;
+    --warn:#f59e0b;
+    --surface:#0b1220;
+    --chip:#0b1220;
+    --chipHover:#0f1a2e;
+    --chipSel:#1e293b;
+    --ok-bg:#06351f;
+    --ok-border:#0e6c45;
+    --ok-text:#c8ffe3;
+    --err-bg:#3b0d0d;
+    --err-border:#7f1d1d;
+    --err-text:#ffd5d5;
+    --warn-bg:#3a2903;
+    --warn-border:#885e09;
+    --warn-text:#ffe6b0;
+  }
+
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0;background:var(--bg);color:var(--text);
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
     font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    transition:background .2s ease,color .2s ease;
   }
   .wrap{max-width:1024px;margin:20px auto;padding:0 16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 18px 40px rgba(15,23,42,.15);
+  }
+
+  .header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .header-main{flex:1 1 auto}
   h1{margin:0 0 6px;font-size:1.45rem}
   .muted{color:var(--muted)}
 
-  .grid-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 6px}
-  @media (max-width:720px){.grid-info{grid-template-columns:1fr}}
-  .info{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:12px;padding:12px}
-  .info b{display:block;margin-bottom:4px;color:#e2e8f0}
+  .theme-btn{
+    align-self:flex-start;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    font-size:.85rem;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .theme-btn:hover{background:var(--surface)}
 
-  .section{margin:18px 0 8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.18);font-weight:700}
+  @media (max-width:720px){
+    .header{flex-direction:column-reverse;align-items:flex-start}
+  }
+
+  .grid-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:12px 0 6px;
+  }
+  @media (max-width:720px){.grid-info{grid-template-columns:1fr}}
+  .info{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
+  }
+  .info b{
+    display:block;
+    margin-bottom:4px;
+    color:var(--muted);
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  .section{
+    margin:18px 0 8px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--surface);
+    font-weight:700;
+  }
 
   /* ===== ITENS ===== */
-  .item{border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(0,0,0,.18);margin-bottom:12px}
+  .item{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px;
+    background:var(--surface);
+    margin-bottom:12px;
+  }
   .stem{font-size:1rem;margin-bottom:10px}
-  .scale{display:grid;grid-template-columns:repeat(5,minmax(160px,1fr));gap:10px}
+  .scale{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(160px,1fr));
+    gap:10px;
+  }
   @media (max-width:680px){ .scale{grid-template-columns:1fr} }
 
-  /* Botões (0..4) */
   .opt{
-    display:flex;align-items:center;gap:10px; padding:10px 12px;
-    border:1px solid var(--line); border-radius:12px; background:var(--chip);
-    cursor:pointer; transition:background .15s ease, border-color .15s ease, transform .05s ease;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--chip);
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .05s ease;
   }
-  .opt:hover{background:var(--chipHover); border-color:#4f70ff; transform:translateY(-1px)}
-  .opt input{appearance:none;-webkit-appearance:none; width:0;height:0;position:absolute;opacity:0}
+  .opt:hover{
+    background:var(--chipHover);
+    border-color:#4f70ff;
+    transform:translateY(-1px);
+  }
+  .opt input{
+    appearance:none;
+    -webkit-appearance:none;
+    width:0;height:0;
+    position:absolute;
+    opacity:0;
+  }
   .opt span{font-weight:600}
   .opt small{opacity:.8}
-  .opt:has(input:checked){background:var(--chipSel); border-color:#6d28d9; box-shadow:0 0 0 1px #6d28d9 inset}
+  .opt:has(input:checked){
+    background:var(--chipSel);
+    border-color:#6d28d9;
+    box-shadow:0 0 0 1px #6d28d9 inset;
+  }
 
-  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
-  .pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.25);font-size:.86rem}
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:6px 0 12px;
+  }
+  .pill{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    font-size:.86rem;
+  }
 
-  /* Ações */
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--pri);border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:600}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--pri);
+    border:none;
+    color:#fff;
+    padding:12px 16px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+  }
   .btn.ok{background:var(--ok)}
-  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+  .btn.ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--muted);
+  }
   .btn:disabled{opacity:.6;cursor:not-allowed}
 
-  /* Mensagens */
   .msg{margin:12px 0;padding:12px;border-radius:10px}
-  .okbox{background:#06351f;border:1px solid #0e6c45;color:#c8ffe3}
-  .errbox{background:#3b0d0d;border:1px solid #7f1d1d;color:#ffd5d5}
-  .warnbox{background:#3a2903;border:1px solid #885e09;color:#ffe6b0}
+  .okbox{
+    background:var(--ok-bg);
+    border:1px solid var(--ok-border);
+    color:var(--ok-text);
+  }
+  .errbox{
+    background:var(--err-bg);
+    border:1px solid var(--err-border);
+    color:var(--err-text);
+  }
+  .warnbox{
+    background:var(--warn-bg);
+    border:1px solid var(--warn-border);
+    color:var(--warn-text);
+  }
 
-  /* Progresso */
-  .progress{height:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-  .bar{height:100%;width:0%;background:linear-gradient(90deg, #6d28d9, #10b981)}
+  .progress{
+    height:10px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, #6d28d9, #10b981);
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="card">
-    <h1>Perfil Sensorial</h1>
-    <p class="muted">
-      Responda conforme ocorre com você. Opções:&nbsp;
-      <b>Quase nunca</b>, <b>Raramente</b>, <b>Ocasionalmente</b>, <b>Frequentemente</b>, <b>Quase sempre</b>.
-    </p>
+    <div class="header">
+      <div class="header-main">
+        <h1>Perfil Sensorial</h1>
+        <p class="muted">
+          Responda conforme ocorre com você. Opções:&nbsp;
+          <b>Quase nunca</b>, <b>Raramente</b>, <b>Ocasionalmente</b>, <b>Frequentemente</b>, <b>Quase sempre</b>.
+        </p>
+      </div>
+      <button id="themeToggle" class="theme-btn" type="button">🌙 Modo escuro</button>
+    </div>
 
-   <div id="pacInfo" class="grid-info" style="display:none;"></div>
+    <div id="pacInfo" class="grid-info" style="display:none;"></div>
 
     <div id="progressWrap" style="display:none; gap:8px; align-items:center; margin:8px 0 0;">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px">
@@ -106,18 +295,55 @@ const SHEETDB_BASE = "https://sheetdb.io/api/v1/8pmdh33s9fvy8";
 const SHEETS = {
   PATIENTS:"Patients",
   TOKENS:"LinkTokens",
-  SCORES:"Scores_PERFIL_SENSORIAL_ADULTO" // confirma que é exatamente esse nome na planilha
+  SCORES:"Scores_PERFIL_SENSORIAL_ADULTO"
 };
-const CODE = "PERFIL_SENSORIAL_ADULTO"; // código salvo na planilha
+const CODE = "PERFIL_SENSORIAL_ADULTO";
 const PORTAL_URL = "https://integradaneuropsicologia.github.io/formularios/";
-const RELEASE_KEYS = ["PERFIL_SENSORIAL_ADULTO"]; // coluna(s) no Patients que precisam estar "sim" p/ liberar
+const RELEASE_KEYS = ["PERFIL_SENSORIAL_ADULTO"];
 
-/* ===== HELPERS ===== */
 const $ = s => document.querySelector(s);
 const onlyDigits = s => (s||"").replace(/\D+/g,"");
 const qs = k => new URLSearchParams(location.search).get(k) || "";
 const TOKEN = qs("token");
 
+/* ===== TEMA CLARO/ESCURO ===== */
+const THEME_KEY = "integrada_theme";
+
+function applyTheme(theme){
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme);
+  const btn = $("#themeToggle");
+  if(btn){
+    btn.textContent = theme === "dark" ? "☀️ Modo claro" : "🌙 Modo escuro";
+  }
+}
+
+function initTheme(){
+  let theme = "light";
+  try{
+    const saved = localStorage.getItem(THEME_KEY);
+    if(saved === "dark" || saved === "light") theme = saved;
+  }catch(_){}
+  applyTheme(theme);
+
+  const btn = $("#themeToggle");
+  if(btn){
+    btn.addEventListener("click", ()=>{
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next);
+      try{ localStorage.setItem(THEME_KEY, next); }catch(_){}
+    });
+  }
+}
+
+if(document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", initTheme);
+} else {
+  initTheme();
+}
+
+/* ===== HELPERS ===== */
 function setBox(id, text, kind="ok"){
   const el=$(id); if(!el) return;
   el.textContent = text;
@@ -201,7 +427,6 @@ const ITEMS = [
   {text:'14. Eu escolho me envolver em atividades físicas.'},
   {text:'15. Eu tenho dificuldade em “medir o passo” quando utilizo as escadas (por exemplo, eu tropeço, perco o equilíbrio, e/ou preciso segurar o corrimão).'},
   {text:'16. Eu fico facilmente tonto (por exemplo, após me abaixar, após levantar de uma vez).'},
-
 
   // C — Visual
   {sec:'C — Processamento visual', text:'17. Eu gosto de ir a lugares que tenham luzes vibrantes e que sejam coloridos.'},
@@ -311,15 +536,9 @@ function renderQuestions(){
 /* ===== ESTADO ===== */
 let patient=null, tokenRow=null, CPF="";
 const STORAGE_KEY = `ASP60_${TOKEN||'anon'}`;
-let startAt = Date.now(); // para métrica de duração
+let startAt = Date.now();
 
-/* ===== SUBESCALAS =====
-   BR = Baixo Registro
-   PS = Procura de Sensações
-   SS = Sensitividade Sensorial
-   ES = Evita Sensações
-   Cada uma tem 15 itens.
-*/
+/* ===== SUBESCALAS ===== */
 const BR = [3,6,12,15,21,23,36,37,39,41,44,45,52,55,59];
 const PS = [2,4,8,10,14,17,19,28,30,32,40,42,47,50,58];
 const SS = [7,9,13,16,20,22,25,27,31,33,34,48,51,54,60];
@@ -380,7 +599,7 @@ function updateProgress(){
   $("#bar").style.width = `${(answered/total)*100}%`;
 }
 
-/* ===== CAPTURA DE RESPOSTAS LEGÍVEIS ===== */
+/* ===== CAPTURA DE RESPOSTAS ===== */
 function collectAnswersMap(){
   const out={};
   for(let i=1;i<=ITEMS.length;i++){
@@ -401,11 +620,28 @@ function collectQuestionsReadable(){
   return lines.join("\n");
 }
 
-/* ===== INTERPRETAÇÃO DO PERFIL SENSORIAL =====
-   Cada subescala tem 15 itens, escore 0..4 => range 0..60.
-   Percentual = subescala / 60.
-   Pontuações MAIS ALTAS = aquele padrão aparece MAIS no dia a dia.
-*/
+/* JSON para coluna 'questions' */
+function collectQuestionsJSON(){
+  const arr = [];
+  for(let i=1;i<=ITEMS.length;i++){
+    const qnNum = String(i).padStart(2,"0");
+    const name = `q${qnNum}`;
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    const val = sel ? Number(sel.value) : null;
+    const label = sel ? LABEL_BY_VAL[val] || String(val) : "";
+
+    arr.push({
+      numero: i,
+      codigo: name,
+      pergunta: ITEMS[i-1].text,
+      resposta_valor: val,
+      resposta_label: label
+    });
+  }
+  return arr;
+}
+
+/* ===== INTERPRETAÇÃO DO PERFIL SENSORIAL ===== */
 function interpretSensoryProfile(scoreBR,scorePS,scoreSS,scoreES){
   const MAX_SUB = 60; // 15 itens * 4
   const pBR = scoreBR / MAX_SUB;
@@ -422,7 +658,7 @@ function interpretSensoryProfile(scoreBR,scorePS,scoreSS,scoreES){
 
   styles.sort((a,b)=>b.pct - a.pct);
   const topPct = styles[0].pct;
-  const dominantes = styles.filter(s => (topPct - s.pct) < 0.05); // empate se diferença <5pp
+  const dominantes = styles.filter(s => (topPct - s.pct) < 0.05);
 
   const resumoDom = dominantes.map(s=>s.label).join(" / ");
 
@@ -442,7 +678,7 @@ function interpretSensoryProfile(scoreBR,scorePS,scoreSS,scoreES){
   };
 }
 
-/* ===== RENDER INFO DO PACIENTE ===== */
+/* ===== INFO PACIENTE ===== */
 function renderPatientInfo(){
   const g = $("#pacInfo"); g.innerHTML="";
   const info = [
@@ -457,7 +693,7 @@ function renderPatientInfo(){
   }
 }
 
-/* ===== DEV CHECKS (console) ===== */
+/* ===== DEV CHECKS ===== */
 function devChecks(){
   if(ITEMS.length !== 60){
     console.warn(`ITEMS possui ${ITEMS.length} itens, esperado 60.`);
@@ -496,23 +732,22 @@ $("#form").addEventListener("submit", async (e)=>{
       }
     }
 
-    // Escores (0..60 cada subescala)
+    // Escores
     const scoreBR = sumSet(BR);
     const scorePS = sumSet(PS);
     const scoreSS = sumSet(SS);
     const scoreES = sumSet(ES);
     const total = scoreBR + scorePS + scoreSS + scoreES;
 
-    // respostas detalhadas
     const answersMap = collectAnswersMap();
     const questionsReadable = collectQuestionsReadable();
+    const questionsArr = collectQuestionsJSON();
 
     // interpretação
     const interpObj = interpretSensoryProfile(scoreBR,scorePS,scoreSS,scoreES);
 
-    // métricas extras gerais
     const durationSec = Math.round((Date.now() - startAt)/1000);
-    const max_total = ITEMS.length * 4; // 60 itens * escore máx 4 = 240
+    const max_total = ITEMS.length * 4; // 60 itens * 4 = 240
     const percent_total = Number((total / max_total).toFixed(4));
 
     const metricsObj = {
@@ -529,10 +764,10 @@ $("#form").addEventListener("submit", async (e)=>{
       duration_sec: durationSec,
       dominantes: interpObj.dominantes,
       interpretation_global: interpObj.textoGlobal,
-      answers: answersMap
+      answers: answersMap,
+      questions_human: questionsReadable
     };
 
-    // string compacta pra "categoria"
     const categoria_csv = [
       `BaixoRegistro=${scoreBR}`,
       `ProcuraSensacoes=${scorePS}`,
@@ -542,7 +777,6 @@ $("#form").addEventListener("submit", async (e)=>{
       `Resumo=${interpObj.textoGlobal}`
     ].join(',');
 
-    // salvar no Scores
     await sheetCreate(SHEETS.SCORES, {
       result_id: `${patient.cpf}_${CODE}_${Date.now()}`,
       token: TOKEN,
@@ -552,11 +786,10 @@ $("#form").addEventListener("submit", async (e)=>{
       submitted_at: new Date().toISOString(),
       total: total,
       categoria: categoria_csv,
-      metrics: JSON.stringify(metricsObj),
-      questions: questionsReadable
+      metrics: "",
+      questions: JSON.stringify(questionsArr)
     });
 
-    // marcar como feito no Patients
     const doneUpdates = {};
     RELEASE_KEYS.map(k=>`${k}_FEITO`).forEach(k=>{
       if(k in patient) doneUpdates[k] = "sim";
@@ -612,7 +845,6 @@ $("#form").addEventListener("submit", async (e)=>{
       return;
     }
 
-    // já respondeu?
     const doneKeys = RELEASE_KEYS.map(k => `${k}_FEITO`);
     const anyDoneFlag = doneKeys.some(
       k => String(patient[k]||"").trim().toLowerCase()==="sim"
@@ -624,7 +856,6 @@ $("#form").addEventListener("submit", async (e)=>{
       return;
     }
 
-    // renderizar UI + restaurar rascunho
     renderPatientInfo();
     renderQuestions();
     restoreDraft();
@@ -635,9 +866,8 @@ $("#form").addEventListener("submit", async (e)=>{
     $("#progressWrap").style.display = "block";
     hideBox("#alert");
 
-    startAt = Date.now(); // marca início real de preenchimento
-
-    devChecks(); // só console.warn pra conferência
+    startAt = Date.now();
+    devChecks();
 
   }catch(err){
     console.error(err);
@@ -645,7 +875,7 @@ $("#form").addEventListener("submit", async (e)=>{
   }
 })();
 
-/* ===== EVENTOS DE UI GERAIS ===== */
+/* ===== EVENTOS GERAIS ===== */
 addEventListener('change', (e)=>{
   if(e.target && e.target.matches('input[type="radio"][name^="q"]')){
     saveDraft();
