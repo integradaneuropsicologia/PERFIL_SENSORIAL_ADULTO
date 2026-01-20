@@ -772,9 +772,7 @@ $("#form").addEventListener("submit", async (e)=>{
       `BaixoRegistro=${scoreBR}`,
       `ProcuraSensacoes=${scorePS}`,
       `SensitividadeSensorial=${scoreSS}`,
-      `EvitaSensacoes=${scoreES}`,
-      `Dominante=${interpObj.dominantes.join("+")}`,
-      `Resumo=${interpObj.textoGlobal}`
+      `EvitaSensacoes=${scoreES}`
     ].join(',');
 
     await sheetCreate(SHEETS.SCORES, {
@@ -787,7 +785,7 @@ $("#form").addEventListener("submit", async (e)=>{
       total: total,
       categoria: categoria_csv,
       metrics: "",
-      questions: JSON.stringify(questionsArr)
+      questions: "" // JSON.stringify(questionsArr)
     });
 
     const doneUpdates = {};
